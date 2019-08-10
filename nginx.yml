@@ -1,0 +1,75 @@
+---
+- hosts: nginx
+  vars_files:
+    - vars/config.yml
+  tasks:
+    - name: run echo command
+      command: /bin/echo hello world
+
+    - name: "APT: Install aptitude package" # [WARNING]: Could not find aptitude. Using apt-get instead 
+      apt: name=aptitude force_apt_get=yes
+
+    # nginx
+    - name: install nginx
+      apt: name=nginx update_cache=yes state=latest
+
+    - name: nginx virtual host file
+      template: src=nginx/default dest=/etc/nginx/sites-available/default
+      notify:
+        - restart nginx
+
+    # mysql
+    - name: Specify MySQL root password before installing
+      debconf: name='mysql-server' question='mysql-server/root_password' value='{{mysql_root_password | quote}}' vtype='password'
+
+    - name: Confirm MySQL root password before installing
+      debconf: name='mysql-server' question='mysql-server/root_password_again' value='{{mysql_root_password | quote}}' vtype='password'
+
+    - name: MySQL | install mysql packages
+      apt: 
+        pkg: 
+          - mysql-client
+          - mysql-common
+          - mysql-server
+          - python-mysqldb
+        state: present
+    
+    # php
+    - name: install php
+      apt:
+        pkg:
+          - unzip 
+          - mcrypt
+          - php7.2-cli
+          - php7.2-curl
+          - php7.2-fpm
+          - php7.2-json
+          - php7.2-mysql
+          - php7.2-gd
+          - php7.2-mbstring 
+          - php7.2-xml
+          - php7.2-xmlrpc 
+          - php7.2-zip 
+          - php7.2-opcache
+        update_cache: yes 
+        state: latest
+
+    - name: ensure php7.2-fpm cgi.fix_pathinfo=0
+      lineinfile: dest=/etc/php/7.2/fpm/php.ini regexp='^(.*)cgi.fix_pathinfo=' line=cgi.fix_pathinfo=0
+      notify:
+        - restart php7.2-fpm
+        - restart nginx
+    
+    # node
+    - name: install nodejs
+      apt: name=nodejs update_cache=yes state=latest
+    
+    - name: install npm
+      apt: name=npm update_cache=yes state=latest
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+    - name: restart php7.2-fpm
+      service: name=php7.2-fpm state=restarted
