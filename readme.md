@@ -35,6 +35,10 @@ LEMP
 
 	fdisk -l
 
+#### 磁碟掛載
+
+<https://cloud.google.com/compute/docs/disks/add-persistent-disk?hl=zh-tw>
+
 #### 掛載磁碟列表
 
 	df -h
