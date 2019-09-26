@@ -17,6 +17,11 @@ ansible -m shell -a 'df -h' all
 ansible-playbook [name].yml
 
 # linux command
+
+切換成 root 權限
+
+```sudo -s```
+
 磁碟列表(含未mount)
 
 ```fdisk -l```
@@ -24,3 +29,13 @@ ansible-playbook [name].yml
 掛載磁碟列表
 
 ```df -h```
+
+系統排程
+
+修改
+
+```crontab -e```
+
+查看
+
+```crontab -l```
