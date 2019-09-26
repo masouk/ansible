@@ -18,7 +18,9 @@ ansible-playbook [name].yml
 
 # linux command
 磁碟列表(含未mount)
+
 ```fdisk -l```
 
 掛載磁碟列表
+
 ```df -h```
