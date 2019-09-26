@@ -8,17 +8,21 @@ LEMP
 ## ansible command
 
 
-	// 檢查所有連線
+#### 檢查所有連線
+
 	ansible -m ping all
 	
-	// 確認主機是否可以連線
+#### 確認主機是否可以連線
+
 	ansible {name} -m ping
 	
-	// 跑遠端 shell
+#### 跑遠端 shell
+
 	ansible -m shell -a 'hostname' all
 	ansible -m shell -a 'df -h' all
 	
-	// 執行遠端部屬
+#### 執行遠端部屬
+
 	ansible-playbook [name].yml
 
 ## linux command
