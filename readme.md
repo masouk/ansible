@@ -66,6 +66,6 @@ LEMP
 	
 #### 作業系統
 	uname -a
-	cat /etc/os-release
+	cat /etc/lsb-release
 
 
