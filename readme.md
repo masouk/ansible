@@ -56,5 +56,15 @@ LEMP
 
 #### 刪除 pid
 	kill -9 {pid}
+	
+#### 記憶體狀況
+	free -m
+	
+#### 預設套件版本查看
+	apt show php
+	apt-cache policy nodejs
+	
+#### 作業系統
+	uname -a
 
 
