@@ -67,5 +67,8 @@ LEMP
 #### 作業系統
 	uname -a
 	cat /etc/lsb-release
+	
+#### 清除 log 下 .gz 之檔案
+	sudo find /var/log/ -type f -regex '.*\.[0-9]+\.gz$' -delete
 
 
