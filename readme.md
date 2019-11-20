@@ -70,5 +70,12 @@ LEMP
 	
 #### 清除 log 下 .gz 之檔案
 	sudo find /var/log/ -type f -regex '.*\.[0-9]+\.gz$' -delete
+	
+## GIT
+	// first commit reset 
+	git update-ref -d HEAD
+	
+	// 多 commit 整併
+	git rebase -i {log-id}
 
 
