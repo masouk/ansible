@@ -82,6 +82,8 @@ LEMP
 	// remote
 	jupyter notebook --no-browser --port=8889
 	
-	//local
+	// local 
+	// options: -N: 建立通道，但不連進SSH服務器裡; -f: 背景執行(不顯示LOG)，terminal 關掉即結束; -L: 正向連線 -R: 反向連線
 	ssh -N -f -L localhost:8888:localhost:8889 username@your_remote_host_name
+	
 
