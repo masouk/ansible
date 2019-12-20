@@ -78,4 +78,10 @@ LEMP
 	// 多 commit 整併
 	git rebase -i {log-id}
 
+## Jupyter remote connection
+	// remote
+	jupyter notebook --no-browser --port=8889
+	
+	//local
+	ssh -N -f -L localhost:8888:localhost:8889 username@your_remote_host_name
 
