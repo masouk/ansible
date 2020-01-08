@@ -24,6 +24,17 @@ LEMP
 #### 執行遠端部屬
 
 	ansible-playbook [name].yml
+	
+	// -i 連線檔案位置
+	ansible-playbook [name].yml -i hosts --user [username] --ask-pass --ask-become-pass
+
+## docker command
+
+#### rum image and background run
+
+	docker run -td --name [container_name] -v [local_path]:[remote_path] [image_id]
+	
+	docker exec -it [container_id] bash
 
 ## linux command
 
